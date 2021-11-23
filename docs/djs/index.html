@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -33,6 +33,21 @@
         -webkit-transition: all 1s linear;
         transition: all 1s linear;
       }
+      input {
+        border-bottom: 1px solid #dbdbdb;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        font-size: x-large;
+        background-color: rgba(0,0,0,0);
+        text-align: center;
+        color: white;
+        width: 150px;
+      }
+      input::placeholder {
+        color:lightgray;
+      }
+      
 
       
       
@@ -146,8 +161,10 @@
   
   <div style="color:rgba(0,0,0,0)">1</div>
   <div style="color:rgba(0,0,0,0)">1</div>
+  
   <div style="text-align:center; font-size:xxx-large; margin:0 auto 30px auto; color: white">开播倒计时</div>
-  <div style="text-align:center;margin-bottom: 20px;color:white">主播正在 <input style="border-bottom: 1px solid #dbdbdb; border-top:0px; border-left:0px; border-right:0px;font-size:medium" placeholder="骂小德（点击可修改）" type="text">，稍等嗷~</div>
+  <div style="text-align:center;margin-bottom: 20px;color:white;font-size: x-large;margin:0 20px">主播正在 <input placeholder="骂小德" type="text">，稍等嗷~</div>
+  <div style="text-align:center; color:gray">点击上方的下划线可输入文字</div>
   <div style="text-align:center; color:gray">点击下面的 + 和 - 可以修改时间</div>
   
   <div class="container">
@@ -192,9 +209,8 @@
   </div>
   
   
-
-  
   </div>
+  
 
 
   <div id="fakeImg" style="display:none">
