@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -196,7 +196,9 @@
   
   </div>
 
-  
+
+  <div id="fakeImg" style="display:none">
+  </div>
   
   
   <div class="shade">
@@ -265,12 +267,23 @@
     ];
     let imgUrlNum = 0
     
-    // 图片预加载，避免闪烁
-    var imgObjList = []
+    let fakeImgNode = document.getElementById('fakeImg');
     for(let i = 0; i<imgUrlList.length; i++) {
-      imgObjList[i] = new Image();
-      imgObjList[i].src = imgUrlList[i]
+      let tempNode = document.createElement("img");
+      let attr = document.createAttribute("src");
+      attr.value = imgUrlList[i];
+      tempNode.setAttributeNode(attr);
+      fakeImgNode.appendChild(tempNode);
     }
+    
+    
+    // 图片预加载，避免闪烁
+    // 傻逼了，这个好像有跨域问题？
+    // var imgObjList = []
+    // for(let i = 0; i<imgUrlList.length; i++) {
+    //   imgObjList[i] = new Image();
+    //   imgObjList[i].src = imgUrlList[i]
+    // }
     
     document.body.style.backgroundImage="url("+imgUrlList[imgUrlNum]+")";
     imgUrlNum++
@@ -278,7 +291,7 @@
     setInterval(()=>{
       document.body.style.backgroundImage="url("+imgUrlList[(imgUrlNum % imgUrlList.length)]+")";
       imgUrlNum++
-    },5000);
+    },3000);
     
 
     function changeWholeTime(seconds){
