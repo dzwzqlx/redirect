@@ -82,7 +82,7 @@
 
                 eleYMD.innerHTML = Ymd;
                 eleHMS.innerHTML = Hms;
-                if((dataArray[4]*100+dataArray[5])%15==0){
+                if((dataArray[4]*100+dataArray[5])%3000==0){
                     console.log("闹钟");
                     audio.play();
                 }
@@ -123,7 +123,10 @@
      <div style="position: absolute; left: 50%; top: 50%; width: 300px; height: 100px; margin: -300px 0 0 -150px;">
         <section id="YMD"></section>
         <section id="HMS"></section>
-        <input style="display:block; margin:auto" type="checkbox">
+        <div style="margin:auto;width: fit-content;" >
+            <input type="checkbox">
+            <label>开启闹钟</label>
+        </div>
     </div>
 
 </body>
