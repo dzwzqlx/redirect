@@ -83,7 +83,7 @@
                 eleYMD.innerHTML = Ymd;
                 eleHMS.innerHTML = Hms;
                 if((dataArray[4]*100+dataArray[5])%3000==0){
-                    console.log("闹钟");
+                    console.log(["闹钟",dataArray[4],dataArray[5],dataArray[4]*100+dataArray[5],(dataArray[4]*100+dataArray[5])%3000]);
                     audio.play();
                 }
 
