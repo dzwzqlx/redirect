@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旅行闹钟</title>
+
+    <style>
+        html *{
+
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body{
+
+            background-color: #fdf6e3;
+            height: 100vh;
+            align-items: center;
+
+        }
+
+        section{
+            text-align: center;
+            font-size: 28px;
+            font-style: bold;
+            flex: 1 0 auto
+        }
+
+
+
+    </style>
+
+    <script>
+        window.onload = function(){
+
+            function getCurrentTime(){
+
+                var dt = new Date();
+
+
+                // 获取年份
+                
+                var CurrentYear = dt.getFullYear();
+
+                // 获取月份
+                var CurrentMonth =  dt.getMonth() + 1;
+                // 获取日
+                var CurrentDay = dt.getDate();
+                // 获取小时
+                var CurrentHour = dt.getHours();
+                // 获取分钟
+                var CurrentMinter = dt.getMinutes();
+                // 获取秒
+                var CurrentSeconds = dt.getSeconds();
+
+                var dataArray = [CurrentYear, CurrentMonth, CurrentDay, CurrentHour, CurrentMinter, CurrentSeconds]
+
+                // 保持稳定的两位数
+                for (let i = 0; i<dataArray.length; i++){
+                    if (dataArray[i] <= 9){
+                        // console.log("==>", dataArray[i]);
+                        dataArray[i] = "0" + dataArray[i];
+                        // console.log(dataArray[i], "<==");
+                    }
+                }
+                return dataArray
+            }
+
+            var eleYMD = document.getElementById('YMD');
+            var eleHMS = document.getElementById('HMS');
+            // var audioCtx = new AudioContext(); // [音频失败：clock.html:72 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu]
+            var audio = new Audio('alert.mp3');
+
+            function showTime(){
+
+                let dataArray = getCurrentTime()
+
+                var Ymd = dataArray[0]+"年"+dataArray[1]+"月"+dataArray[2]+"日";
+
+                var Hms = dataArray[3]+"时"+dataArray[4]+"分"+dataArray[5]+"秒";
+
+                eleYMD.innerHTML = Ymd;
+                eleHMS.innerHTML = Hms;
+                if((dataArray[4]*100+dataArray[5])%15==0){
+                    console.log("闹钟");
+                    audio.play();
+                }
+
+
+/* [音频失败]
+	switch( (dataArray[4]*100+dataArray[5])%1620){
+                    case 0:
+                    case 2:
+                    case 4:
+                        console.log("alert")
+                        
+                        var oscillator = audioCtx.createOscillator();
+                        var gainNode = audioCtx.createGain();
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioCtx.destination);
+                        oscillator.type = 'sine';
+                        oscillator.frequency.value = 392.00;
+                        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+                        gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.01);
+                        oscillator.start(audioCtx.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1);
+                        oscillator.stop(audioCtx.currentTime + 1);
+                        break;
+                    default: 
+                        break;
+                }
+*/
+            }
+            // 避免页面启动短暂空白;
+            showTime();
+
+            setInterval(showTime, 1000);
+        }
+    </script>
+</head>
+<body>
+     <div style="position: absolute; left: 50%; top: 50%; width: 300px; height: 100px; margin: -300px 0 0 -150px;">
+        <section id="YMD"></section>
+        <section id="HMS"></section>
+        <input style="display:block; margin:auto" type="checkbox">
+    </div>
+
+</body>
+</html>
