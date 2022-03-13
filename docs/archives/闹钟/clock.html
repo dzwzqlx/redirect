@@ -70,7 +70,7 @@
             var eleYMD = document.getElementById('YMD');
             var eleHMS = document.getElementById('HMS');
             // var audioCtx = new AudioContext(); // [音频失败：clock.html:72 The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://goo.gl/7K7WLu]
-            var audio = new Audio('alert.mp3');
+            var audio = new Audio('alert2.mp3');
 
             function showTime(){
 
@@ -83,7 +83,7 @@
                 eleYMD.innerHTML = Ymd;
                 eleHMS.innerHTML = Hms;
                 if((dataArray[4]+dataArray[5])%3000==0){ // 后面一个是字符串，所以可以这样加。
-                    console.log(["闹钟",dataArray[4],dataArray[5],dataArray[4]+dataArray[5],(dataArray[4]*100+dataArray[5])%3000]);
+                    console.log(["闹钟",dataArray[4],dataArray[5],dataArray[4]+dataArray[5],(dataArray[4]+dataArray[5])%3000]);
                     audio.play();
                 }
 
